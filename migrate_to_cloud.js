@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const LOCAL_URI = 'mongodb://localhost:27017/bookify';
-const REMOTE_URI = 'mongodb+srv://shersingh741730_db_user:5JUYcl9E1KxrXAM5@cluster0.ma4tnzs.mongodb.net/leadflow?appName=Cluster0';
+const REMOTE_URI = 'mongodb+srv://shersingh741730_db_user:5JUYcl9E1KxrXAM5@cluster0.ma4tnzs.mongodb.net/bookify?appName=Cluster0';
 
 const migrate = async () => {
   try {

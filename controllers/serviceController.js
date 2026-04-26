@@ -23,6 +23,7 @@ exports.createService = async (req, res) => {
       price,
       duration,
       description,
+      paymentMode: req.body.paymentMode || 'offline',
     });
 
     res.status(201).json(service);

@@ -9,8 +9,10 @@ const {
 } = require('../controllers/bookingController');
 const { protect } = require('../middleware/auth');
 
+const upload = require('../middleware/upload');
+
 // Public routes
-router.post('/', createBooking);
+router.post('/', upload.single('paymentReceipt'), createBooking);
 router.get('/available-slots', getAvailableSlots);
 
 // Protected routes

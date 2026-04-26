@@ -7,6 +7,7 @@ const {
   updateBusiness,
   deleteBusiness,
   renewBusiness,
+  updateUpiQrCode,
 } = require('../controllers/businessController');
 const { protect } = require('../middleware/auth');
 
@@ -17,6 +18,7 @@ router.get('/my', protect, getMyBusinesses);
 router.get('/:slug', getBusinessBySlug);
 router.put('/:id', protect, updateBusiness);
 router.post('/:id/renew', protect, upload.single('paymentReceipt'), renewBusiness);
+router.put('/:id/upi-qr', protect, upload.single('upiQrCode'), updateUpiQrCode);
 router.delete('/:id', protect, deleteBusiness);
 
 module.exports = router;

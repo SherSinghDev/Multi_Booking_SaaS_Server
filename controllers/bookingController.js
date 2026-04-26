@@ -80,6 +80,7 @@ exports.createBooking = async (req, res) => {
       date,
       timeSlot,
       notes,
+      paymentReceipt: req.file ? `/uploads/${req.file.filename}` : '',
     });
 
     const populated = await Booking.findById(booking._id).populate('service');
@@ -228,7 +229,8 @@ exports.updateBookingStatus = async (req, res) => {
       return res.status(403).json({ message: 'Not authorized' });
     }
 
-    booking.status = status;
+    if (req.body.status) booking.status = req.body.status;
+    if (req.body.paymentStatus) booking.paymentStatus = req.body.paymentStatus;
     await booking.save();
 
     const updated = await Booking.findById(req.params.id).populate('service');

@@ -72,6 +72,10 @@ const businessSchema = new mongoose.Schema({
   subscriptionEnd: {
     type: Date,
   },
+  upiQrCode: {
+    type: String,
+    default: '',
+  },
 }, { timestamps: true });
 
 module.exports = mongoose.model('Business', businessSchema);

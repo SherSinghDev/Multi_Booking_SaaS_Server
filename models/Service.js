@@ -32,6 +32,11 @@ const serviceSchema = new mongoose.Schema({
     type: Boolean,
     default: true,
   },
+  paymentMode: {
+    type: String,
+    enum: ['online', 'offline'],
+    default: 'offline',
+  },
 }, { timestamps: true });
 
 module.exports = mongoose.model('Service', serviceSchema);

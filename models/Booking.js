@@ -43,6 +43,15 @@ const bookingSchema = new mongoose.Schema({
     type: String,
     default: '',
   },
+  paymentReceipt: {
+    type: String,
+    default: '',
+  },
+  paymentStatus: {
+    type: String,
+    enum: ['pending', 'verified', 'rejected'],
+    default: 'pending',
+  },
 }, { timestamps: true });
 
 // Compound index to prevent double booking

@@ -143,3 +143,23 @@ exports.renewBusiness = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+// PUT /api/business/:id/upi-qr — Update UPI QR Code
+exports.updateUpiQrCode = async (req, res) => {
+  try {
+    const business = await Business.findById(req.params.id);
+    if (!business) return res.status(404).json({ message: 'Business not found' });
+    if (business.owner.toString() !== req.user._id.toString()) return res.status(403).json({ message: 'Not authorized' });
+
+    if (!req.file) {
+      return res.status(400).json({ message: 'UPI QR Code image is required' });
+    }
+
+    business.upiQrCode = `/uploads/${req.file.filename}`;
+    await business.save();
+
+    res.json({ message: 'UPI QR Code updated', business });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
